@@ -4,6 +4,12 @@
     
     <h1>{{ message }}</h1>
     <p>Make a new recipe</p>
+    <p>Title: <input v-model="newRecipeTitle" type="text"></p>
+    <p>Ingredients: <input v-model="newRecipeIngredients" type="text"></p>
+    <p>Directions: <input v-model="newRecipeDirections" type="text"></p>
+    <p>Prep Time: <input v-model="newRecipePrepTime" type="text"></p>
+    <p>Image Url: <input v-model="newRecipeImageUrl" type="text"></p>
+    
     <button v-on:click="addRecipe()">Add Recipe</button>
     
 
@@ -29,7 +35,12 @@ export default {
     return {
       message: "Welcome to Vue.js!",
       name: "brian",
-      recipes: []
+      recipes: [],
+      newRecipeTitle: "",
+      newRecipeIngredients: "",
+      newRecipeDirections: "",
+      newRecipePrepTime: "",
+      newRecipeImageUrl: "",
     };
   },
   created: function() {
@@ -49,13 +60,14 @@ export default {
     },
     addRecipe: function() {
       console.log('adding recipe...');
+      console.log(this.newRecipeTitle);
 
       var params = {
-        title: "THIS IS A BRAND NEW RECIPE!!!",
-        prep_time: 200,
-        directions: "here are the directions",
-        ingredients: "here are the ingredients",
-        image_url: "http://something.com"
+        title: this.newRecipeTitle,
+        prep_time: this.newRecipePrepTime,
+        directions: this.newRecipeDirections,
+        ingredients: this.newRecipeIngredients,
+        image_url: this.newRecipeImageUrl
       }
 
       axios.post('/api/recipes', params).then(response => {
@@ -65,4 +77,16 @@ export default {
     }
   }
 };
+
+
+// new/create
+
+// get user input
+// keep track of it
+  // send that user input to rails
+  // get the response from rails
+  // take that response and show it to the user
+
+
+
 </script>

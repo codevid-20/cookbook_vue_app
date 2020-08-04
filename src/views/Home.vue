@@ -25,6 +25,19 @@
       <button v-on:click="showInfo(recipe)">Show more info</button>
       <hr>
     </div>
+
+
+    <dialog id="recipe-details">
+      <form method="dialog">
+        <h1>Recipe info</h1>
+        <p>Title: {{currentRecipe.title}}</p>
+        <p>Chef: {{currentRecipe.chef}}</p>
+        <p>Ingredients: {{currentRecipe.ingredients}}</p>
+        <p>Directions: {{currentRecipe.directions}}</p>
+        <p>Prep time: {{currentRecipe.prep_time}}</p>
+        <button>Close</button>
+      </form>
+    </dialog>
     
   </div>
 </template>
@@ -46,6 +59,7 @@ export default {
       newRecipeDirections: "",
       newRecipePrepTime: "",
       newRecipeImageUrl: "",
+      currentRecipe: {}
     };
   },
   created: function() {
@@ -82,6 +96,8 @@ export default {
     },
     showInfo: function(recipe) {
       console.log(recipe);
+      this.currentRecipe = recipe;
+      document.querySelector('#recipe-details').showModal();
     }
   }
 };

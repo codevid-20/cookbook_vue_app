@@ -9,6 +9,7 @@
       <p>title: {{ recipe.title }}</p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>image_url: {{ recipe.image_url }}</p>
+      <img v-bind:src="recipe.image_url">      
       <hr>
     </div>
     
@@ -31,12 +32,14 @@ export default {
   },
   created: function() {
     this.indexRecipes();
-    
   },
   methods: {
     indexRecipes: function() {
       console.log("why won't you print out!!!");
       console.log('recipes index...');
+
+      
+
       axios.get('/api/recipes').then(response => {
         console.log(response);
         this.recipes = response.data;

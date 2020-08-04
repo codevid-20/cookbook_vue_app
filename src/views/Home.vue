@@ -14,10 +14,15 @@
     
 
     <div v-for="recipe in recipes">
+      <br>
+      <br>
+      <br>
+      <br>
       <p>title: {{ recipe.title }}</p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>image_url: {{ recipe.image_url }}</p>
       <img v-bind:src="recipe.image_url">      
+      <button v-on:click="showInfo(recipe)">Show more info</button>
       <hr>
     </div>
     
@@ -74,6 +79,9 @@ export default {
         console.log(response.data);
         this.recipes.push(response.data);
       })
+    },
+    showInfo: function(recipe) {
+      console.log(recipe);
     }
   }
 };

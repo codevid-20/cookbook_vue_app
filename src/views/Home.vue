@@ -4,6 +4,7 @@
     
     <h1>{{ message }}</h1>
     <p>Make a new recipe</p>
+    
     <p>Title: <input v-model="newRecipeTitle" type="text"></p>
     <p>Ingredients: <input v-model="newRecipeIngredients" type="text"></p>
     <p>Directions: <input v-model="newRecipeDirections" type="text"></p>
@@ -18,6 +19,7 @@
       <br>
       <br>
       <br>
+      <p>Id: {{recipe.id}}</p>
       <p>title: {{ recipe.title }}</p>
       <p>ingredients: {{ recipe.ingredients }}</p>
       <p>image_url: {{ recipe.image_url }}</p>
@@ -39,6 +41,7 @@
         <p>Image URL: <input  v-model="currentRecipe.image_url"></p>
         <button v-on:click="updateRecipe(currentRecipe)">Update</button>
         <button>Close</button>
+        <button v-on:click="destroyRecipe(currentRecipe)">Delete recipe</button>
       </form>
     </dialog>
     
@@ -106,17 +109,31 @@ export default {
       console.log(recipe);
 
       var params = {
-        title: this.currentRecipe.title,
-        prep_time: this.currentRecipe.prep_time,
-        directions: this.currentRecipe.directions,
-        ingredients: this.currentRecipe.ingredients,
-        image_url: this.currentRecipe.image_url
+        title: recipe.title,
+        prep_time: recipe.prep_time,
+        directions: recipe.directions,
+        ingredients: recipe.ingredients,
+        image_url: recipe.image_url
       }
 
-      axios.patch('/api/recipes/' + this.currentRecipe.id, params).then(response => {
+      axios.patch('/api/recipes/' + recipe.id, params).then(response => {
         console.log(response.data);
         this.currentRecipe = response.data;
       })
+    },
+    destroyRecipe: function(recipe) {
+      console.log(recipe);
+      // delete it in the backend (rails)
+      axios.delete('/api/recipes/' + recipe.id).then(response => {
+        console.log(response.data);
+        // delete in frontend 
+        var index = this.recipes.indexOf(recipe);
+
+        this.recipes.splice(index, 1);
+        
+        console.log(index);
+      })
+
     }
   }
 };

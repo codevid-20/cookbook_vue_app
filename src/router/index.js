@@ -5,6 +5,7 @@ import Test from '../views/Test.vue'
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
+import RecipesIndex from "../views/RecipesIndex.vue";
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home
+  }, 
+  {
+    path: '/recipes',
+    name: 'RecipesIndex',
+    component: RecipesIndex
   }, 
   { 
     path: "/signup", 

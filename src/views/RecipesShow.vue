@@ -9,6 +9,8 @@
 
     <img v-bind:src="recipe.image_url">
 
+    <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit this item</a>
+
 
   </div>
 </template>

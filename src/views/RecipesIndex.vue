@@ -3,7 +3,7 @@
     <h1>{{ message }}</h1>
     <!-- <h1>{{ recipes }}</h1> -->
     <div v-for="recipe in recipes">
-      <h3>{{ recipe.title }}</h3>
+      <h3><a v-bind:href="`/recipes/${recipe.id}`">{{ recipe.title }}</a></h3>
       <p>{{ recipe.directions }}</p>
       <hr>
     </div>

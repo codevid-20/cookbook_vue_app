@@ -31,9 +31,9 @@ export default {
   methods: {
     showRecipe: function() {
       console.log('showing the recipe...');
-      console.log(this.$route.params.id);
-      // params[:id]
-      axios.get('/api/recipes/' + this.$route.params.id).then(response => {
+      console.log(this.$route);
+      // params[:id]      
+      axios.get(`/api/recipes/${this.$route.params.id}`).then(response => {
         console.log(response.data);
         this.recipe = response.data;
       })

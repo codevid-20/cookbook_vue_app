@@ -53,14 +53,14 @@ export default {
 
       console.log(params);
       
-      // axios
-      //   .post("/api/recipes", params)
-      //   .then(response => {
-      //     this.$router.push("/recipes");
-      //   })
-      //   .catch(error => {
-      //     this.errors = error.response.data.errors;
-      //   });
+      axios
+        .patch(`/api/recipes/${this.$route.params.id}`, params)
+        .then(response => {
+          this.$router.push("/recipes");
+        })
+        .catch(error => {
+          this.errors = error.response.data.errors;
+        });
 
       
     },

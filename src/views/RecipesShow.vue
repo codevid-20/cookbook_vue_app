@@ -11,6 +11,8 @@
 
     <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit this item</a>
 
+    <p><button v-on:click="deleteRecipe()">Delete the recipe</button></p>
+
 
   </div>
 </template>
@@ -39,6 +41,14 @@ export default {
         console.log(response.data);
         this.recipe = response.data;
       })
+    },
+    deleteRecipe: function() {
+      console.log('deleting the recipe...');
+      axios.delete(`/api/recipes/${this.$route.params.id}`).then(response => {
+        console.log(response.data);
+        this.$router.push('/recipes')
+      })
+
     }
   }
 };

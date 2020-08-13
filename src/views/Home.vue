@@ -70,6 +70,8 @@ export default {
   },
   created: function() {
     this.indexRecipes();
+    
+    
   },
   methods: {
     indexRecipes: function() {

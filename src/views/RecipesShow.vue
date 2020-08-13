@@ -9,10 +9,15 @@
 
     <img v-bind:src="recipe.image_url">
 
-    <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit this item</a>
+    <p>recipe.user_id {{recipe.user_id}}</p>
+    <p>current user's id {{ $parent.getUserId() }}</p>
 
-    <p><button v-on:click="deleteRecipe()">Delete the recipe</button></p>
+    <div v-if="recipe.user_id == $parent.getUserId()">
 
+      <a v-bind:href="`/recipes/${recipe.id}/edit`">Edit this item</a>
+
+      <p><button v-on:click="deleteRecipe()">Delete the recipe</button></p>
+    </div>
 
   </div>
 </template>

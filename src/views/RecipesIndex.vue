@@ -17,6 +17,7 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from 'vue2-filters'
 
 export default {
   data: function() {
@@ -36,6 +37,7 @@ export default {
         this.recipes = response.data;
       })
     }
-  }
+  },
+  mixins: [Vue2Filters.mixin],
 };
 </script>
